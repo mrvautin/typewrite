@@ -65,7 +65,7 @@ $(document).ready(function(){
 
 Adding text is done by passing an object with a key of `type` and a value of the text you would like typed. e.g:
 
-``` json
+``` javascript
 {type: 'Hello.'}
 ```
 
@@ -75,13 +75,13 @@ Removing text is done by passing a nested object with a key of `remove` and a ne
 
 To remove 5 characters, one character at a time:
 
-``` json
+``` javascript
 {remove: {num: 5, type: 'stepped'}}
 ```
 
 To remove 5 characters, in one whole remove:
 
-``` json
+``` javascript
 {remove: {num: 5, type: 'whole'}}
 ```
 
@@ -93,7 +93,7 @@ Selecting text is done by passing a nested object with a key of `select` and a n
 
 The following will select from the 11th character to the 16th:
 
-``` json
+``` javascript
 {select: {from: 11, to: 16}}
 ```
 
@@ -103,7 +103,7 @@ Delay (pause) is done by passing an object with a key of `delay` and a value wit
 
 The following will delay for 1500 milliseconds (1.5 seconds).
 
-``` json
+``` javascript
 {delay: 1500}
 ```
 
@@ -113,11 +113,9 @@ You can change the typing speed midway through the actions by passing an object 
 
 The following will change the typing speed to 22 characters per second.
 
-``` json
+``` javascript
 {speed: 22}
 ```
-
-{speed: 22},
 
 ### Options
 
