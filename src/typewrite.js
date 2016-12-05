@@ -1,5 +1,5 @@
 (function ($){
-    $.fn.typeout = function(options){
+    $.fn.typewrite = function(options){
         // setup defaults
         var settings = $.extend({
             speed: 12,
@@ -41,8 +41,8 @@
         // holds the queue of actions
         settings.queue = actions.length;
 
-        // trigger the 'typeoutStarted' event
-        $(settings.mainel).trigger('typeoutStarted');
+        // trigger the 'typewriteStarted' event
+        $(settings.mainel).trigger('typewriteStarted');
 
         // execute the actions
         actions.forEach(function(element, index){
@@ -84,14 +84,14 @@
         var done = setInterval(function(){
             if(settings.queue === 0){
                 clearInterval(done);
-                $(settings.mainel).trigger('typeoutComplete');
+                $(settings.mainel).trigger('typewriteComplete');
             }
         }, 500);
 
         // adds a wrapper span around given index of characters to mimick selecting the text
         function select(action, callback){
             var charLen = action.to - action.from;
-            var spanOpen = '<span class="typeOutSelected" style="background-color:' + settings.selectedBackground + '; color: ' + settings.selectedText + '">';
+            var spanOpen = '<span class="typewriteSelected" style="background-color:' + settings.selectedBackground + '; color: ' + settings.selectedText + '">';
             var blankstr = new Array(charLen + 1).join(' ');
             var chars = blankstr.split('');
             chars.forEach(function(char, index){
@@ -110,7 +110,7 @@
                     // we are done, remove from queue
                     if(index === chars.length - 1){
                         settings.queue = settings.queue - 1;
-                        $(settings.mainel).trigger('typeoutSelected', action);
+                        $(settings.mainel).trigger('typewriteSelected', action);
                     }
                 });
             });
@@ -123,7 +123,7 @@
 
                 // we are done, remove from queue
                 settings.queue = settings.queue - 1;
-                $(settings.mainel).trigger('typeoutDelayEnded');
+                $(settings.mainel).trigger('typewriteDelayEnded');
             });
         }
 
@@ -151,7 +151,7 @@
                         // we are done, remove from queue
                         if(index === chars.length - 1){
                             settings.queue = settings.queue - 1;
-                            $(settings.mainel).trigger('typeoutRemoved', remove);
+                            $(settings.mainel).trigger('typewriteRemoved', remove);
                         }
                     });
                 }, this);
@@ -165,7 +165,7 @@
 
                     // we are done, remove from queue
                     settings.queue = settings.queue - 1;
-                    $(settings.mainel).trigger('typeoutRemoved', remove);
+                    $(settings.mainel).trigger('typewriteRemoved', remove);
                 });
             }
         }
@@ -182,7 +182,7 @@
                     // we are done, remove from queue
                     if(index === chars.length - 1){
                         settings.queue = settings.queue - 1;
-                        $(settings.mainel).trigger('typeoutTyped', text);
+                        $(settings.mainel).trigger('typewriteTyped', text);
                     }
                 });
             }, this);
@@ -197,16 +197,16 @@
 
                 // we are done, remove from queue
                 settings.queue = settings.queue - 1;
-                $(settings.mainel).trigger('typeoutNewLine');
+                $(settings.mainel).trigger('typewriteNewLine');
             });
         }
 
         function removeSelection(){
             // check selection exists
-            if($('.typeOutSelected').length > 0){
+            if($('.typewriteSelected').length > 0){
                 // removes selection
-                var selectionText = $('.typeOutSelected').text();
-                $('.typeOutSelected').replaceWith(selectionText);
+                var selectionText = $('.typewriteSelected').text();
+                $('.typewriteSelected').replaceWith(selectionText);
             }
         }
     };

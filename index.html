@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>typeout example</title>
+    <title>typewrite example</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/mrvautin/typeout/master/dist/typeout.min.js"></script>
+    <!--<script type="text/javascript" src="https://cdn.rawgit.com/mrvautin/typewrite/master/dist/typewrite.min.js"></script>-->
+    <script type="text/javascript" src="src/typewrite.js"></script>
     <style>
         body{background-color: #000;}
-        #typeoutText{color: #fff;font-size: 50px; font-family: Arial, Helvetica, sans-serif; position: fixed; left: 35%; top: 25%; width: 35%;}
+        #typewriteText{color: #fff;font-size: 50px; font-family: Arial, Helvetica, sans-serif; position: fixed; left: 35%; top: 25%; width: 35%;}
     </style>
     <script>
         $(document).ready(function(){
-            $('#typeoutText').typeout({
+            $('#typewriteText').typewrite({
                 actions: [
                     {type: 'Hello. '},
                     {type: '<br>'},
@@ -21,16 +22,15 @@
                     {delay: 2000},
                     {remove: {num: 5, type: 'whole'}},
                     {delay: 300},
-                    {type: 'lcome to `typeout`. '},
+                    {type: 'lcome to `typewrite`. '},
                     {type: '<br>'},
-                    {type: 'It\'s just so easy to setup and use.'}
+                    {type: 'It\'s so easy to setup and use.'}
                 ]
             });
         });
     </script>
 </head>
 <body>
-    <div id="typeoutText"></div>
-    <div id="typeoutText1"></div>
+    <div id="typewriteText"></div>
 </body>
 </html>

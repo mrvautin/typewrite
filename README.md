@@ -1,40 +1,40 @@
-# typeout
+# typewrite
 
 A javascript library to animate the **typing**, **deleting**, and **selecting** of text on a page
 
-<img src="https://raw.githubusercontent.com/mrvautin/typeout/master/typeout.gif" width="640">
+<img src="https://raw.githubusercontent.com/mrvautin/typewrite/master/typewrite.gif" width="640">
 
 ### Demo 
-See [here](https://rawgit.com/mrvautin/typeout/master/index.html "Demo").
+See [here](https://rawgit.com/mrvautin/typewrite/master/index.html "Demo").
 
 ### Installation
 
-`typeout` is a jQuery plugin, so it needs to be included in your HTML after jQuery. e.g:
+`typewrite` is a jQuery plugin, so it needs to be included in your HTML after jQuery. e.g:
 
 From repo:
 
 ``` javascript
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="dist/typeout.min.js"></script>
+<script src="dist/typewrite.min.js"></script>
 ```
 
 From CDN:
 ``` javascript
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/mrvautin/typeout/master/dist/typeout.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/mrvautin/typewrite/master/dist/typewrite.min.js"></script>
 ```
 
 Setup your target element to type into:
 
 ``` html
-<div id="typeoutText"></div>
+<div id="typewriteText"></div>
 ```
 
-Some `typeout` demo actions with default settings:
+Some `typewrite` demo actions with default settings:
 
 ``` javascript
 $(document).ready(function(){
-    $('#typeoutText').typeout({
+    $('#typewriteText').typewrite({
         actions: [
             {type: 'Hello. '},
             {type: '<br>'},
@@ -45,7 +45,7 @@ $(document).ready(function(){
             {delay: 2000},
             {remove: {num: 5, type: 'whole'}},
             {delay: 300},
-            {type: 'lcome to typeout. '},
+            {type: 'lcome to typewrite. '},
             {type: '<br>'},
             {type: 'It\'s just so easy to setup and use.'}
         ]
@@ -55,11 +55,11 @@ $(document).ready(function(){
 
 ### Using typout
 
-`typeout` works on actions. You pass an array of actions which will be executed in order. See example above.
+`typewrite` works on actions. You pass an array of actions which will be executed in order. See example above.
 
 ### actions
 
-`typeout` can add text, delay (pause), remove text and even select text. 
+`typewrite` can add text, delay (pause), remove text and even select text. 
 
 #### Typing
 
@@ -136,40 +136,40 @@ The following will change the typing speed to 22 characters per second.
 
 ### Styling
 
-If you want to add additional CSS to further style `typeout`, please use the following CSS classes:
+If you want to add additional CSS to further style `typewrite`, please use the following CSS classes:
 
 `.blinkingCursor` is the class applied to the blinking cursor (if enabled)
 
-`.typeOutSelected` is the class applied to the selected text. You may want to add CSS rather then setting the `selectedBackground` and `selectedText` values.
+`.typewriteSelected` is the class applied to the selected text. You may want to add CSS rather then setting the `selectedBackground` and `selectedText` values.
 
 ### Events
 
-`typeout` supports the use of events for all the actions. Some actions trigger returned data and some don't, see below for examples:
+`typewrite` supports the use of events for all the actions. Some actions trigger returned data and some don't, see below for examples:
 
 ``` javascript
-$('#typeoutText')
-    .on('typeoutStarted', function() {
-        console.log('typeout has started');
+$('#typewriteText')
+    .on('typewriteStarted', function() {
+        console.log('typewrite has started');
     })
-    .on('typeoutComplete', function() {
-        console.log('typeout has complete');
+    .on('typewriteComplete', function() {
+        console.log('typewrite has complete');
     })
-    .on('typeoutTyped', function(event, data) {
-        console.log('typeout has typed', data);
+    .on('typewriteTyped', function(event, data) {
+        console.log('typewrite has typed', data);
     })
-    .on('typeoutRemoved', function(event, data) {
-        console.log('typeout has removed', data);
+    .on('typewriteRemoved', function(event, data) {
+        console.log('typewrite has removed', data);
     })
-    .on('typeoutNewLine', function() {
-        console.log('typeout has added a new line');
+    .on('typewriteNewLine', function() {
+        console.log('typewrite has added a new line');
     })
-    .on('typeoutSelected', function(event, data) {
-        console.log('typeout has selected text', data);
+    .on('typewriteSelected', function(event, data) {
+        console.log('typewrite has selected text', data);
     })
-    .on('typeoutDelayEnded', function() {
-        console.log('typeout delay has ended');
+    .on('typewriteDelayEnded', function() {
+        console.log('typewrite delay has ended');
     })
-    .typeout({
+    .typewrite({
         actions: [
             {type: 'Hello. '},
             {type: '<br>'},
@@ -180,7 +180,7 @@ $('#typeoutText')
             {delay: 2000},
             {remove: {num: 5, type: 'whole'}},
             {delay: 300},
-            {type: 'lcome to typeout. '},
+            {type: 'lcome to typewrite. '},
             {type: '<br>'},
             {type: 'It\'s just so easy to setup and use.'}
         ]
