@@ -1,7 +1,7 @@
 {
-  "name": "typewrite",
-  "version": "1.0.0",
-  "description": "A javascript library to animate the typing, deleting, and selecting of text on a page",
+  "name": "type-write",
+  "version": "1.0.1",
+  "description": "A javascript typewriter library which animates the typing, deleting, and selecting of text on a page",
   "main": "src/typewrite.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,15 +13,17 @@
   },
   "keywords": [
     "typewrite",
+    "typewriter",
     "jquery",
     "animate",
     "typing",
     "type",
     "text",
     "delete text",
-    "animate typing"
+    "animate typing",
+    "select text"
   ],
-  "author": "Mark Moffat <mrvautin@gmail.com> (http://mrvautin.com)",
+  "author": "Mark Moffat <mrvautin@gmail.com> (https://markmoffat.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mrvautin/typewrite/issues"

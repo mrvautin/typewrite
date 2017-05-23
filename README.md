@@ -1,6 +1,6 @@
 # typewrite
 
-A javascript library to animate the **typing**, **deleting**, and **selecting** of text on a page
+A javascript typewriter library which animates the **typing**, **deleting**, and **selecting** of text on a page
 
 <img src="https://raw.githubusercontent.com/mrvautin/typewrite/master/typewrite.gif" width="640">
 
@@ -53,7 +53,7 @@ $(document).ready(function(){
 });
 ```
 
-### Using typout
+### Using typewrite
 
 `typewrite` works on actions. You pass an array of actions which will be executed in order. See example above.
 
@@ -133,6 +133,28 @@ The following will change the typing speed to 22 characters per second.
 
 **selectedText** {string}: The Hex color value of the selected text - Default: `'#333333'`
 
+Providing option are done by setting the object with the actions. Eg:
+
+``` javascript
+$('#typewriteText').typewrite({
+    blinkSpeed: 15,
+    cursor: '@',
+    actions: [
+        {type: 'Hello. '},
+        {type: '<br>'},
+        {type: 'Weclome '},
+        {delay: 1500},
+        {remove: {num: 1, type: 'stepped'}},
+        {select: {from: 11, to: 16}},
+        {delay: 2000},
+        {remove: {num: 5, type: 'whole'}},
+        {delay: 300},
+        {type: 'lcome to `typewrite`. '},
+        {type: '<br>'},
+        {type: 'It\'s so easy to setup and use.'}
+    ]
+});
+```
 
 ### Styling
 
