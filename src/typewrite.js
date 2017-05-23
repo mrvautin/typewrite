@@ -18,8 +18,21 @@
         if(settings.showCursor){
             $(this).html('<span></span><span class="blinkingCursor">' + settings.cursor + '</span>');
             if(settings.blinkingCursor){
+                // cache cursor object
+                var $cursor = $('.blinkingCursor');
                 setInterval(function(){
-                    $('.blinkingCursor').toggle();
+                    // check if blinkingCursor is set to opacity
+                    if( settings.blinkingCursor === 'opacity' ){
+                        // toggle cursor opacity
+                        if( $cursor.css('opacity') === '1' ){ 
+                            $cursor.css({ 'opacity': 0 });
+                        }else{
+                            $cursor.css({ 'opacity': 1 });
+                        }
+                    }else{
+                        // default to show/hide
+                        $cursor.toggle();
+                    }
                 }, settings.blinkSpeed);
             }
         }else{
