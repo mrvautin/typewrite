@@ -61,37 +61,37 @@
         actions.forEach(function(element, index){
             // changes the typing speed
             if(Object.keys(element).includes('speed')){
-            settings.speed = 1000 / element.speed;
+                settings.speed = 1000 / element.speed;
             }
 
             // removes any previous selections
             if(!Object.keys(element).includes('speed')){
-            removeSelection();
+                removeSelection();
             }
 
             // adds a delay to the sequence
             if(Object.keys(element).includes('delay')){
-            delay(element.delay);
+                delay(element.delay);
             }
 
             // removes characters
             if(Object.keys(element).includes('remove')){
-            remove(element.remove);
+                remove(element.remove);
             }
 
             // adds a span which selects the text
             if(Object.keys(element).includes('select')){
-            select(element.select);
+                select(element.select);
             }
 
             // types out text
             if(Object.keys(element).includes('type')){
-            if(element.type === '<br>'){
-              newLine();
-            }else{
-              var text = $('<div/>').html(element.type).text();
-              typeText(text, settings);
-            }
+                if(element.type === '<br>'){
+                  newLine();
+                }else{
+                  var text = $('<div/>').html(element.type).text();
+                  typeText(text, settings);
+                }
             }
         });
 

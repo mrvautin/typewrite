@@ -1,6 +1,6 @@
 {
   "name": "type-write",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A javascript typewriter library which animates the typing, deleting, and selecting of text on a page",
   "main": "src/typewrite.js",
   "scripts": {
