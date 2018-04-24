@@ -205,7 +205,7 @@
         // adds a new line <br> to the html
         function newLine(){
             $(settings.el).delay(settings.speed).queue(function (next){
-                var currTextNoCurr = $(this).html().substring(0, $(this).html().length - 1);
+                var currTextNoCurr = $(this).html().substring(0, $(this).html().length);
                 $(this).html(currTextNoCurr + '<br>');
                 next();
 
