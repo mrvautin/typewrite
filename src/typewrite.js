@@ -109,8 +109,8 @@
             var chars = blankstr.split('');
             chars.forEach(function(char, index){
                 $(settings.el).delay(settings.speed).queue(function (next){
-                    index++;
-                    var newTo = action.to - index;
+                    var newIndex = index + 1;
+                    var newTo = action.to - newIndex;
                     $(settings.el).html($(settings.el).html().replace(/<br.*?>/g, ' \n '));
                     var currentString = $(settings.el).text();
                     var firstPart = currentString.slice(0, newTo);
