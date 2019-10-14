@@ -81,6 +81,7 @@
             // changes the typing speed
             if(Object.keys(element)[0] === 'speed'){
                 settings.speed = 1000 / element.speed;
+	        settings.queue = settings.queue - 1;
             }
 
             // removes characters
