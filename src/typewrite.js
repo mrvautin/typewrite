@@ -59,38 +59,39 @@
 
         // execute the actions
         actions.forEach(function(element, index){
-            // removes any previous selections
-            if(Object.keys(element)[0] !== 'select'){
-                removeSelection();
-            }
-
-            // types out text
-            if(Object.keys(element)[0] === 'type'){
-                if(element.type === '<br>'){
-                    newLine();
-                }else{
-                    var text = $('<div/>').html(element.type).text();
-                    typeText(text, settings);
-                }
-            }
-            // adds a delay to the sequence
-            if(Object.keys(element)[0] === 'delay'){
-                delay(element.delay);
-            }
-
             // changes the typing speed
-            if(Object.keys(element)[0] === 'speed'){
+            if(Object.keys(element).includes('speed')){
                 settings.speed = 1000 / element.speed;
             }
 
+            // removes any previous selections
+            if(!Object.keys(element).includes('speed')){
+                removeSelection();
+            }
+
+            // adds a delay to the sequence
+            if(Object.keys(element).includes('delay')){
+                delay(element.delay);
+            }
+
             // removes characters
-            if(Object.keys(element)[0] === 'remove'){
+            if(Object.keys(element).includes('remove')){
                 remove(element.remove);
             }
 
             // adds a span which selects the text
-            if(Object.keys(element)[0] === 'select'){
+            if(Object.keys(element).includes('select')){
                 select(element.select);
+            }
+
+            // types out text
+            if(Object.keys(element).includes('type')){
+                if(element.type === '<br>'){
+                  newLine();
+                }else{
+                  var text = $('<div/>').html(element.type).text();
+                  typeText(text, settings);
+                }
             }
         });
 
@@ -204,7 +205,7 @@
         // adds a new line <br> to the html
         function newLine(){
             $(settings.el).delay(settings.speed).queue(function (next){
-                var currTextNoCurr = $(this).html().substring(0, $(this).html().length - 1);
+                var currTextNoCurr = $(this).html().substring(0, $(this).html().length);
                 $(this).html(currTextNoCurr + '<br>');
                 next();
 
