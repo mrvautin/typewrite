@@ -133,6 +133,8 @@ The following will change the typing speed to 22 characters per second.
 
 **selectedText** {string}: The Hex color value of the selected text - Default: `'#333333'`
 
+**continuous** {boolean}: Whether to run on continuous loop - Default: `false`
+
 Providing option are done by setting the object with the actions. Eg:
 
 ``` javascript
