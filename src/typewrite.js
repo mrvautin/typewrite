@@ -8,7 +8,8 @@
             blinkingCursor: true,
             cursor: '|',
             selectedBackground: '#F1F1F1',
-            selectedText: '#333333'
+            selectedText: '#333333',
+            continuous: false
         }, options);
 
         // set the blink speed of the cursor
@@ -40,7 +41,7 @@
         }
 
         // set the main element, not the span
-        settings.mainel = this;
+        settings.mainEl = this;
 
         // add a span to hold our text
         settings.el = $(this).children('span')[0];
@@ -55,50 +56,58 @@
         settings.queue = actions.length;
 
         // trigger the 'typewriteStarted' event
-        $(settings.mainel).trigger('typewriteStarted');
+        $(settings.mainEl).trigger('typewriteStarted');
 
         // execute the actions
-        actions.forEach(function(element, index){
-            // changes the typing speed
-            if(Object.keys(element).includes('speed')){
-                settings.speed = 1000 / element.speed;
-            }
+        processActions();
 
-            // removes any previous selections
-            if(!Object.keys(element).includes('speed')){
-                removeSelection();
-            }
-
-            // adds a delay to the sequence
-            if(Object.keys(element).includes('delay')){
-                delay(element.delay);
-            }
-
-            // removes characters
-            if(Object.keys(element).includes('remove')){
-                remove(element.remove);
-            }
-
-            // adds a span which selects the text
-            if(Object.keys(element).includes('select')){
-                select(element.select);
-            }
-
-            // types out text
-            if(Object.keys(element).includes('type')){
-                if(element.type === '<br>'){
-                  newLine();
-                }else{
-                  var text = $('<div/>').html(element.type).text();
-                  typeText(text, settings);
+        function processActions(){
+            actions.forEach(function(element, index){
+                // changes the typing speed
+                if(Object.keys(element).includes('speed')){
+                    settings.speed = 1000 / element.speed;
                 }
-            }
-        });
+
+                // removes any previous selections
+                if(!Object.keys(element).includes('speed')){
+                    removeSelection();
+                }
+
+                // adds a delay to the sequence
+                if(Object.keys(element).includes('delay')){
+                    delay(element.delay);
+                }
+
+                // removes characters
+                if(Object.keys(element).includes('remove')){
+                    remove(element.remove);
+                }
+
+                // adds a span which selects the text
+                if(Object.keys(element).includes('select')){
+                    select(element.select);
+                }
+
+                // types out text
+                if(Object.keys(element).includes('type')){
+                    if(element.type === '<br>'){
+                        newLine();
+                    }else{
+                        var text = $('<div/>').html(element.type).text();
+                        typeText(text, settings);
+                    }
+                }
+            });
+        }
 
         var done = setInterval(function(){
             if(settings.queue === 0){
                 clearInterval(done);
-                $(settings.mainel).trigger('typewriteComplete');
+                $(settings.mainEl).trigger('typewriteComplete');
+                if(settings.continuous){
+                    $(settings.el).empty();
+                    processActions();
+                }
             }
         }, 500);
 
@@ -110,8 +119,8 @@
             var chars = blankstr.split('');
             chars.forEach(function(char, index){
                 $(settings.el).delay(settings.speed).queue(function (next){
-                    index++;
-                    var newTo = action.to - index;
+                    var newIndex = index + 1;
+                    var newTo = action.to - newIndex;
                     $(settings.el).html($(settings.el).html().replace(/<br.*?>/g, ' \n '));
                     var currentString = $(settings.el).text();
                     var firstPart = currentString.slice(0, newTo);
@@ -124,7 +133,7 @@
                     // we are done, remove from queue
                     if(index === chars.length - 1){
                         settings.queue = settings.queue - 1;
-                        $(settings.mainel).trigger('typewriteSelected', action);
+                        $(settings.mainEl).trigger('typewriteSelected', action);
                     }
                 });
             });
@@ -137,7 +146,7 @@
 
                 // we are done, remove from queue
                 settings.queue = settings.queue - 1;
-                $(settings.mainel).trigger('typewriteDelayEnded');
+                $(settings.mainEl).trigger('typewriteDelayEnded');
             });
         }
 
@@ -165,7 +174,7 @@
                         // we are done, remove from queue
                         if(index === chars.length - 1){
                             settings.queue = settings.queue - 1;
-                            $(settings.mainel).trigger('typewriteRemoved', remove);
+                            $(settings.mainEl).trigger('typewriteRemoved', remove);
                         }
                     });
                 }, this);
@@ -179,7 +188,7 @@
 
                     // we are done, remove from queue
                     settings.queue = settings.queue - 1;
-                    $(settings.mainel).trigger('typewriteRemoved', remove);
+                    $(settings.mainEl).trigger('typewriteRemoved', remove);
                 });
             }
         }
@@ -196,7 +205,7 @@
                     // we are done, remove from queue
                     if(index === chars.length - 1){
                         settings.queue = settings.queue - 1;
-                        $(settings.mainel).trigger('typewriteTyped', text);
+                        $(settings.mainEl).trigger('typewriteTyped', text);
                     }
                 });
             }, this);
@@ -211,7 +220,7 @@
 
                 // we are done, remove from queue
                 settings.queue = settings.queue - 1;
-                $(settings.mainel).trigger('typewriteNewLine');
+                $(settings.mainEl).trigger('typewriteNewLine');
             });
         }
 
