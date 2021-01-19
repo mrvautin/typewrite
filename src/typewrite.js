@@ -1,3 +1,4 @@
+console.log("contributed");
 (function ($){
     $.fn.typewrite = function(options){
         // setup defaults
