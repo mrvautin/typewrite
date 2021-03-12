@@ -101,13 +101,13 @@
         }
 
         var done = setInterval(function(){
-            if(settings.queue === 0){
+            if(settings.queue === 0 && settings.continuous === false){
                 clearInterval(done);
                 $(settings.mainEl).trigger('typewriteComplete');
-                if(settings.continuous){
-                    $(settings.el).empty();
-                    processActions();
-                }
+            } else {
+                settings.queue = actions.length;
+                $(settings.el).empty();
+                processActions();
             }
         }, 500);
 
