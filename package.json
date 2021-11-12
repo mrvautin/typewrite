@@ -30,6 +30,6 @@
   },
   "homepage": "https://github.com/mrvautin/typewrite#readme",
   "dependencies": {
-    "uglify-js": "^2.7.5"
+    "uglify-js": "^3.14.3"
   }
 }
